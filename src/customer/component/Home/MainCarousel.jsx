@@ -13,7 +13,7 @@ const MainCarousel = () => {
         items={items}
         disableButtonsControls
         autoPlay
-        autoPlayInterval={2000}
+        autoPlayInterval={1000}
         infinite
     />
   )
