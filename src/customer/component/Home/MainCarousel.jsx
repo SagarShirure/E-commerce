@@ -9,13 +9,16 @@ const MainCarousel = () => {
     role='presentation' src={item.image} alt=""/>)
     
   return (
-    <AliceCarousel
+    <div className='z-50'>
+      <AliceCarousel
         items={items}
         disableButtonsControls
         autoPlay
         autoPlayInterval={1000}
         infinite
     />
+    </div>
+    
   )
 }
 

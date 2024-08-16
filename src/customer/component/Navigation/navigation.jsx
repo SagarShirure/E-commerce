@@ -175,9 +175,9 @@ export default function Navigation() {
                 </div>
 
                 {/* Links */}
-                <Tab.Group as="div" className="mt-2">
-                  <div className="border-b border-gray-200">
-                    <Tab.List className="-mb-px flex space-x-8 px-4">
+                <Tab.Group as="div" className="mt-2 ">
+                  <div className="border-b border-gray-200 ">
+                    <Tab.List className="-mb-px flex space-x-8 px-4 ">
                       {navigation.categories.map((category) => (
                         <Tab
                           key={category.name}
@@ -195,7 +195,7 @@ export default function Navigation() {
                   </div>
                   <Tab.Panels as={Fragment}>
                     {navigation.categories.map((category) => (
-                      <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10">
+                      <Tab.Panel key={category.name} className="space-y-10 px-4 pb-8 pt-10 z-50">
                         <div className="grid grid-cols-2 gap-x-4">
                           {category.featured.map((item) => (
                             <div key={item.name} className="group relative text-sm">
@@ -308,8 +308,8 @@ export default function Navigation() {
               </div>
 
               {/* Flyout menus */}
-              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch">
-                <div className="flex h-full space-x-8">
+              <Popover.Group className="hidden lg:ml-8 lg:block lg:self-stretch z-10">
+                <div className="flex h-full space-x-8 ">
                   {navigation.categories.map((category) => (
                     <Popover key={category.name} className="flex">
                       {({ open }) => (
