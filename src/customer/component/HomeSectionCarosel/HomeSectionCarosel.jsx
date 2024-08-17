@@ -4,7 +4,7 @@ import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
 import KeyboardArrowLeftIcon from "@mui/icons-material/KeyboardArrowLeft";
 import { Button } from "@mui/material";
 import React, {  useState } from "react";
-import mens_kurta from "../../../Data/Men/men_kurta.js"
+
 
 
 
@@ -14,28 +14,17 @@ const HomeSectionCarosel = ({data, sectionName}) => {
 
   const responsive = {
     0: { items: 1 },
-    720: { items: 4 },
-    1024: { items: 5 },
+    720: { items: 3 },
+    1024: { items: 5.5 },
   };
 
 
-  const slidePrev = () => {
-    if (activeIndex > 0) setActiveIndex(activeIndex - 1);
-  };
-
+  const slidePrev = () =>  setActiveIndex(activeIndex - 1);
+  const slideNext = () => setActiveIndex(activeIndex + 1);
   
-  const slideNext = () => {
-    if (activeIndex < items.length - 5) setActiveIndex(activeIndex + 1);
-  };
- 
-  
-  const syncActiveIndex = (e) => {
-    if (e >= 0 && e < items.length) setActiveIndex(e);
-    setActiveIndex(e);
-  };
+  const syncActiveIndex = (e) =>  setActiveIndex(e);
 
-
-  const items = data.map((items) => <HomeSectionCard productData={items}  />);
+  const items = data.slice(0,10).map((item) => <HomeSectionCard productData={item}  />);
 
   return (
     <div className="border ">
@@ -46,8 +35,13 @@ const HomeSectionCarosel = ({data, sectionName}) => {
           disableButtonsControls
           responsive={responsive}
           disableDotsControls
-          onSlideChanged={syncActiveIndex}
+          onSlideChanged={(e) => {
+            console.log('Slide changed:', e.item);
+            syncActiveIndex(e);
+          }}
           activeIndex={activeIndex}
+          infinite={true}
+          slidesToScroll={1}
         />
         {activeIndex !== items.length - 5 &&      <Button
             variant="contained"

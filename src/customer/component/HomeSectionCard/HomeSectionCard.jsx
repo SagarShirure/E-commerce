@@ -3,7 +3,8 @@ import React from 'react'
 
 const HomeSectionCard = ({ productData }) => {
   return (
-    <div className="flex flex-col justify-between rounded-lg shadow-lg mx-5 border-black ">
+    <div class="container mx-5"  style={{ height: 'auto', overflow: 'visible' }}>
+    
       <div className=" h-40 w-40 ">
         <img
           className="object-cover  object-top w-full h-full"
