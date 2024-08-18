@@ -3,11 +3,19 @@
 import { useState } from "react";
 
 import { Radio, RadioGroup } from "@headlessui/react";
-import { Box, Button, colors, Grid, LinearProgress, Rating } from "@mui/material";
+import {
+  Box,
+  Button,
+  colors,
+  Grid,
+  LinearProgress,
+  Rating,
+} from "@mui/material";
 import ProductReviewCard from "./ProductReviewCard";
 import { green } from "@mui/material/colors";
-import { mens_kurta } from '../../../Data/Men/men_kurta'
+import { mens_kurta } from "../../../Data/Men/men_kurta";
 import HomeSectionCard from "../HomeSectionCard/HomeSectionCard";
+import { useNavigate } from "react-router-dom";
 
 const product = {
   name: "Basic Tee 6-Pack",
@@ -66,6 +74,11 @@ function classNames(...classes) {
 export default function ProductDetails() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0]);
   const [selectedSize, setSelectedSize] = useState(product.sizes[2]);
+  const navigate = useNavigate();
+
+  const handleAddtoCart = () => {
+    navigate("/cart");
+  };
 
   return (
     <div className="bg-white px-20">
@@ -217,7 +230,7 @@ export default function ProductDetails() {
                   </fieldset>
                 </div>
 
-                <Button
+                <Button onClick={handleAddtoCart}
                   variant="contained"
                   sx={{ px: "2rem", py: "1rem", bgcolor: "#9155fd" }}
                 >
@@ -266,10 +279,13 @@ export default function ProductDetails() {
         </section>
         {/* This is for rating and reviews */}
         <section>
-          <h1 className="text-2xl font-bold py-5"> Recent Reviews and Rating</h1>
+          <h1 className="text-2xl font-bold py-5">
+            {" "}
+            Recent Reviews and Rating
+          </h1>
           <div className="border p-5">
             <Grid container spacing={7}>
-              <Grid item xs={7} >
+              <Grid item xs={7}>
                 <div className="space-y-5">
                   {[1, 1, 1].map(() => (
                     <ProductReviewCard />
@@ -282,62 +298,72 @@ export default function ProductDetails() {
                   <Rating value={4.5} name="rating" readOnly precision={0.5} />
                   <p className="opacity-50"> 5438 Ratings</p>
                 </div>
-                <Box className='mt-5 space-y-3'>
-                    <Grid container  alignItems={'center'} gap={2}>
-                        <Grid item xs={2}>
-                            <p>
-                                Excellent
-                            </p>
-
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress variant="determinate" value={80} color="success" sx={{height:10,bgcolor:green, borderRadius:4}}></LinearProgress>
-                        </Grid>
+                <Box className="mt-5 space-y-3">
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Excellent</p>
                     </Grid>
-                    <Grid container  alignItems={'center'} gap={2}>
-                        <Grid item xs={2}>
-                            <p>
-                                Better
-                            </p>
-
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress variant="determinate" value={75} color="primary" sx={{height:10,bgcolor:green, borderRadius:4}}></LinearProgress>
-                        </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress
+                        variant="determinate"
+                        value={80}
+                        color="success"
+                        sx={{ height: 10, bgcolor: green, borderRadius: 4 }}
+                      ></LinearProgress>
                     </Grid>
-                    <Grid container  alignItems={'center'} gap={2}>
-                        <Grid item xs={2}>
-                            <p>
-                                Good
-                            </p>
-
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress variant="determinate" value={30} color="secondary" sx={{height:10,bgcolor:green, borderRadius:4}}></LinearProgress>
-                        </Grid>
+                  </Grid>
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Better</p>
                     </Grid>
-                    <Grid container  alignItems={'center'} gap={2}>
-                        <Grid item xs={2}>
-                            <p>
-                                 Average
-                            </p>
-
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress variant="determinate" value={12} color="warning" sx={{height:10,bgcolor:green, borderRadius:4}}></LinearProgress>
-                        </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress
+                        variant="determinate"
+                        value={75}
+                        color="primary"
+                        sx={{ height: 10, bgcolor: green, borderRadius: 4 }}
+                      ></LinearProgress>
                     </Grid>
-                    <Grid container  alignItems={'center'} gap={2}>
-                        <Grid item xs={2}>
-                            <p>
-                                poor
-                            </p>
-
-                        </Grid>
-                        <Grid item xs={7}>
-                            <LinearProgress variant="determinate" value={10} color="error" sx={{height:10,bgcolor:green, borderRadius:4}}></LinearProgress>
-                        </Grid>
+                  </Grid>
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Good</p>
                     </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress
+                        variant="determinate"
+                        value={30}
+                        color="secondary"
+                        sx={{ height: 10, bgcolor: green, borderRadius: 4 }}
+                      ></LinearProgress>
+                    </Grid>
+                  </Grid>
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>Average</p>
+                    </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress
+                        variant="determinate"
+                        value={12}
+                        color="warning"
+                        sx={{ height: 10, bgcolor: green, borderRadius: 4 }}
+                      ></LinearProgress>
+                    </Grid>
+                  </Grid>
+                  <Grid container alignItems={"center"} gap={2}>
+                    <Grid item xs={2}>
+                      <p>poor</p>
+                    </Grid>
+                    <Grid item xs={7}>
+                      <LinearProgress
+                        variant="determinate"
+                        value={10}
+                        color="error"
+                        sx={{ height: 10, bgcolor: green, borderRadius: 4 }}
+                      ></LinearProgress>
+                    </Grid>
+                  </Grid>
                 </Box>
               </Grid>
             </Grid>
@@ -346,12 +372,12 @@ export default function ProductDetails() {
 
         {/* Similar Product */}
         <section className="pt-10">
-            <h1 className="text-2xl font-bold py-5">Similar Product</h1>
-            <div className="grid grid-cols-5 gap-4">
-  {mens_kurta.map((product) => (
-    <HomeSectionCard productData={product} />
-  ))}
-</div>
+          <h1 className="text-2xl font-bold py-5">Similar Product</h1>
+          <div className="grid grid-cols-5 gap-4">
+            {mens_kurta.map((product) => (
+              <HomeSectionCard productData={product} />
+            ))}
+          </div>
         </section>
       </div>
     </div>
